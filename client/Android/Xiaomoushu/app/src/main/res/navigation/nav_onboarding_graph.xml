@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_onbaording_graph"
+    app:startDestination="@id/signInFragment">
+
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.zpf.xiaomoushu.onboarding.ui.fragment.SignInFragment"
+        android:label="SignInFragment" >
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_signInWithPasswordFragment"
+            app:destination="@id/signInWithPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.zpf.xiaomoushu.onboarding.ui.fragment.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_setUpUserProfileFragment"
+            app:destination="@id/setUpUserProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/setUpUserProfileFragment"
+        android:name="com.zpf.xiaomoushu.onboarding.ui.fragment.SetUpUserProfileFragment"
+        android:label="fragment_set_up_user_profile"
+        tools:layout="@layout/fragment_set_up_user_profile" />
+    <fragment
+        android:id="@+id/signInWithPasswordFragment"
+        android:name="com.zpf.xiaomoushu.onboarding.ui.fragment.SignInWithPasswordFragment"
+        android:label="fragment_sign_in_with_password"
+        tools:layout="@layout/fragment_sign_in_with_password" />
+</navigation>
