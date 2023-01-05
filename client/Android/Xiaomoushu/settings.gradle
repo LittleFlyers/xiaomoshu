@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Xiaomoushu"
 include ':app'
+include ':weights'
