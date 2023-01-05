@@ -6,14 +6,12 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
-import android.util.Log
 import androidx.appcompat.widget.AppCompatEditText
 import com.zpf.xiaomoushu.R
 
 
 class CommonEditText : AppCompatEditText {
     companion object {
-        private const val TAG = "OnBoardingEditText"
         private const val TEXT_LEFT_PADDING = 5
         private const val DEFAULT_BORDER_COLOR = Color.WHITE
         private const val ROUND_RECT_LINE_WIDTH = 4f
