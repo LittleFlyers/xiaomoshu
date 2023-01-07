@@ -8,7 +8,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 
-class CommonEditText : AppCompatEditText {
+open class BaseEditText : AppCompatEditText {
     companion object {
         private const val TEXT_LEFT_PADDING = 5
         private const val DEFAULT_BORDER_COLOR = Color.WHITE
@@ -17,7 +17,7 @@ class CommonEditText : AppCompatEditText {
         private const val RY = 20f
     }
 
-    private lateinit var mPaint: Paint
+    protected lateinit var mPaint: Paint
     private var mBorderColor: Int = Color.WHITE
 
     constructor(context: Context) : super(context) {
@@ -35,20 +35,21 @@ class CommonEditText : AppCompatEditText {
     }
 
     @SuppressLint("ResourceType")
-    private fun init(context: Context, attributeSet: AttributeSet?) {
+    protected open fun init(context: Context, attributeSet: AttributeSet?) {
         mPaint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
-        mPaint.color = Color.WHITE
         if (attributeSet != null) {
-            val typeArray = context.obtainStyledAttributes(attributeSet, R.styleable.CommonEditText)
+            val typeArray = context.obtainStyledAttributes(attributeSet, R.styleable.BaseEditText)
             for (typeIndex: Int in 0..typeArray.indexCount) {
                 when (val attr: Int = typeArray.getIndex(typeIndex)) {
-                    R.styleable.CommonEditText_borderColor -> {
+                    R.styleable.BaseEditText_borderColor -> {
                         mBorderColor = typeArray.getColor(attr, DEFAULT_BORDER_COLOR)
                     }
                 }
             }
             typeArray.recycle()
         }
+        mPaint.style = Paint.Style.STROKE
+        mPaint.color = mBorderColor
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -58,8 +59,6 @@ class CommonEditText : AppCompatEditText {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        mPaint.style = Paint.Style.STROKE
-        mPaint.color = mBorderColor
         setTextColor(Color.WHITE)
         drawBorder(canvas)
         background = null
