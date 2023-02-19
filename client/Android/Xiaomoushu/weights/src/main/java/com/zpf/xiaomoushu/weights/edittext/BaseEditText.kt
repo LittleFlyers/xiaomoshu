@@ -1,4 +1,4 @@
-package com.zpf.xiaomoushu.weights
+package com.zpf.xiaomoushu.weights.edittext
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
+import com.zpf.xiaomoushu.weights.R
 
 open class BaseEditText : AppCompatEditText {
     companion object {

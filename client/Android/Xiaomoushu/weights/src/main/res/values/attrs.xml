@@ -3,8 +3,4 @@
     <declare-styleable name="BaseEditText">
         <attr name="borderColor" format="color" />
     </declare-styleable>
-
-    <declare-styleable name="ButtonEditText">
-        <attr name="isPassword" format="boolean" />
-    </declare-styleable>
 </resources>

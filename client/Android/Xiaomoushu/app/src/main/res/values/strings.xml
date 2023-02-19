@@ -3,4 +3,6 @@
     <string name="str_onboarding_prompt_title">登录你的账号</string>
     <string name="hint_phone_number">输入电话号码</string>
     <string name="hint_verify_code">输入验证码</string>
+    <string name="hint_password">输入密码</string>
+    <string name="btn_text_sign_in">登录</string>
 </resources>

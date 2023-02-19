@@ -1,4 +1,4 @@
-package com.zpf.xiaomoushu.weights
+package com.zpf.xiaomoushu.weights.edittext
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,9 +6,9 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Rect
-import android.text.InputType
 import android.util.AttributeSet
 import android.view.MotionEvent
+import com.zpf.xiaomoushu.weights.R
 
 
 class ButtonEditText : BaseEditText {
@@ -19,7 +19,6 @@ class ButtonEditText : BaseEditText {
     private lateinit var mButtonBitmap: Bitmap
     private var mBtnWidth = 0
     private var mBtnPadding = 0
-    private var mIsPassword: Boolean = false
     private var mIsButtonVisible = false
 
     constructor(context: Context) : super(context) {
@@ -39,21 +38,10 @@ class ButtonEditText : BaseEditText {
     @SuppressLint("Recycle")
     override fun init(context: Context, attributeSet: AttributeSet?) {
         super.init(context, attributeSet)
-        if (attributeSet != null) {
-            val typeArray = context.obtainStyledAttributes(attributeSet, R.styleable.ButtonEditText)
-            for (typeIndex: Int in 0..typeArray.indexCount) {
-                when (val attr: Int = typeArray.getIndex(typeIndex)) {
-                    R.styleable.ButtonEditText_isPassword -> {
-                        mIsPassword = typeArray.getBoolean(attr, false)
-                    }
-                }
-            }
-            typeArray.recycle()
-        }
 
-        if (!mIsPassword) {
-            mButtonBitmap = BitmapFactory.decodeResource(context.resources, R.mipmap.clear)
-        }
+
+        mButtonBitmap = BitmapFactory.decodeResource(context.resources, R.mipmap.clear)
+
 
         mBtnWidth = context.resources.getDimensionPixelSize(R.dimen.btn_edit_text_width)
         mBtnPadding = context.resources.getDimensionPixelSize(R.dimen.btn_edit_text_padding)
@@ -61,17 +49,11 @@ class ButtonEditText : BaseEditText {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        if (mIsPassword) {
-            inputType = (InputType.TYPE_TEXT_VARIATION_PASSWORD or InputType.TYPE_CLASS_TEXT)
-        }
         drawButton(canvas)
     }
 
     override fun onTextChanged(
-        text: CharSequence?,
-        start: Int,
-        lengthBefore: Int,
-        lengthAfter: Int
+        text: CharSequence?, start: Int, lengthBefore: Int, lengthAfter: Int
     ) {
         super.onTextChanged(text, start, lengthBefore, lengthAfter)
         mIsButtonVisible = (!text.isNullOrEmpty()) && isFocused
@@ -80,9 +62,8 @@ class ButtonEditText : BaseEditText {
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (event.action == MotionEvent.ACTION_UP) {
-            val buttonTouched = (width - mBtnPadding - mBtnWidth < event.x
-                    && event.x < width - mBtnPadding
-                    && isFocused)
+            val buttonTouched =
+                (width - mBtnPadding - mBtnWidth < event.x && event.x < width - mBtnPadding && isFocused)
             if (buttonTouched) {
                 onClearButtonClick()
                 return true
@@ -96,7 +77,7 @@ class ButtonEditText : BaseEditText {
     }
 
     private fun drawButton(canvas: Canvas) {
-        if (mIsButtonVisible && !mIsPassword) {
+        if (mIsButtonVisible) {
             drawClearButton(canvas)
             invalidate()
         }

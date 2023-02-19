@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="hint_text">#D0D3D4</color>
+    
+    <color name="standard_red">#F61212</color>
 </resources>
